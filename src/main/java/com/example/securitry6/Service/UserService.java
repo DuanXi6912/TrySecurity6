@@ -13,7 +13,8 @@ import com.example.securitry6.Repository.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {
-
+    // UserDetailsService - cung cấp một phương thức để lấy một UserDetails từ username
+    // Spring Security sẽ sử dụng UserDetails này để cho việc xác thực
     @Autowired
     private UserRepository userRepository;
 
@@ -28,5 +29,4 @@ public class UserService implements UserDetailsService {
                             .findByUsername(username)
                             .orElseThrow(() -> new UsernameNotFoundException("user is not valid"));
     }
-    
 }

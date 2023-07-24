@@ -25,6 +25,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ApplicationUser implements UserDetails {
+    // UserDetails - lớp trừu tượng đại diện cho thông tin chi tiết người dùng 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -83,21 +84,25 @@ public class ApplicationUser implements UserDetails {
         return this.username;    
     }
 
+    // Trạng thái hết hạn của tài khoản
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    // Trạng thái khoá của tài khoản 
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    // Trạng thái hết hạn mật khẩu của tài khoản
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    // Trạng thái kích hoạt của tài khoản
     @Override
     public boolean isEnabled() {
         return true;

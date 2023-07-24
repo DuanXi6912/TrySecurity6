@@ -38,7 +38,8 @@ public class AdminController {
 
     @GetMapping("/myprofile")
     public UserDetails getYourProfile(){
-        // SecurityContextHolder là nơi chứa thông tin người dùng (authenticated) hiện tại - tức chứa 1 
+        // SecurityContextHolder là nơi chứa thông tin người dùng (authenticated) hiện tại 
+        // bên UserController giải thích rồi
         String yourUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         return userService.loadUserByUsername(yourUsername);
     }

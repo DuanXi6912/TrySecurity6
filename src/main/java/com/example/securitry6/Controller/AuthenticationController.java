@@ -1,8 +1,6 @@
 package com.example.securitry6.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +19,7 @@ public class AuthenticationController {
     private AuthenticationService authenticationService;
     
     @PostMapping("/registerUser")
-    // Có thể sử dụng để chỉ định phân quyền truy cập với ROLE cho phép thực hiện phương thức
-    // Lưu ý ở database ta lưu là ROLE_ADMIN
+    // PreAuthorize("hasRole('ROLE_ADMIN')"") Có thể sử dụng để chỉ định phân quyền truy cập với ROLE cho phép thực hiện phương thức
     public ApplicationUser registerUser(@RequestBody RegistrationDTO newUser){
         return authenticationService.registerUser(newUser.getUsername(), newUser.getPassword());
     }

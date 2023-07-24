@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
+// GrantedAuthority (interface) đại diện cho quyền được cấp cho người dùng trong hệ thống
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
