@@ -1,31 +1,29 @@
 package com.example.securitry6.Controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.securitry6.Model.ApplicationUser;
-import com.example.securitry6.Repository.UserRepository;
+import com.example.securitry6.Service.UserService;
 
 @RestController
-@RequestMapping("/user")
-@CrossOrigin("*")
+@RequestMapping("/user") // http://localhost:8080/user/** sẽ là các URL để truy cập tài nguyên với Role là USER 
 public class UserController {
 
     @Autowired
-    private UserRepository  userRepository;
+    private UserService userService;
     
     @GetMapping("/Hello")
     public String hello(){
         return "Hello User";
     }
 
-    @GetMapping("/profiles")
-    public List<ApplicationUser> getUser(){
-        return userRepository.findAll();
+    @GetMapping("/profile")
+        public UserDetails getUserByName(){
+            String thisUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+            return userService.loadUserByUsername(thisUsername);
     }
 }

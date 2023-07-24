@@ -49,4 +49,5 @@ public class Role implements GrantedAuthority {
     public void setRoleID(int roleID) {
         this.roleID = roleID;
     }
+
 }
